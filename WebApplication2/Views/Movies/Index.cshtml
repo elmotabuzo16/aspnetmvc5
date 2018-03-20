@@ -1,0 +1,35 @@
+﻿@model IEnumerable<WebApplication2.Models.Movie>
+@{
+    ViewBag.Title = "View";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Movies</h2>
+<p>@Html.ActionLink("New Movie", "New", "Movies", null, new { @class = "btn btn-primary" })</p>
+
+
+@if (!Model.Any())
+{
+    <p>No one has ever created this movie before.</p>
+}
+else
+{
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Movie</th>
+                <th>Genre</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var movies in Model)
+            {
+            <tr>
+                <td>@Html.ActionLink(movies.Name, "Edit", "Movies", new { id = movies.Id }, null)</td>
+                <td>@movies.Genre.Name</td>
+            </tr>
+            }
+        </tbody>
+    </table>
+}
