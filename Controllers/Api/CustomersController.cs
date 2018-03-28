@@ -26,18 +26,18 @@ namespace WebApplication2.Controllers.Api
 		{
 			var customersQuery = _context.Customer.Include(c => c.MembershipType);
 
-            if (!String.IsNullOrWhiteSpace(query))
-            {
-                customersQuery = customersQuery.Where(c => c.Name.Contains(query));
-            }
+			if (!String.IsNullOrWhiteSpace(query))
+			{
+				customersQuery = customersQuery.Where(c => c.Name.Contains(query));
+			}
 
-            var customerDtos = customersQuery
-                .ToList()
-                .Select(Mapper.Map<Customer, CustomerDto>);
+			var customerDtos = customersQuery
+				.ToList()
+				.Select(Mapper.Map<Customer, CustomerDto>);
 
-            
+			
 
-            return Ok(customerDtos);
+			return Ok(customerDtos);
 		}
 
 		//GET /api/customers/1
